@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var BookSchema = new Schema({
   owner: String,
   name: String,
-  isbn: Number,
+  isbn: String,
   imageUrl: String
   });
 
