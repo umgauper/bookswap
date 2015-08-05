@@ -41,3 +41,7 @@
 ul.books li {
   display: inline;
 }
+
+.active {
+  color: cornflowerblue;
+}

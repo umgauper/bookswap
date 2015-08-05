@@ -7,6 +7,10 @@
         <img src="assets/images/yeoman.png" alt="I'm Yeoman">
       </div>
       <div class="col-lg-4" ng-controller="LoginCtrl">
+        <ul>
+          <li>Login</li>
+          <li>Register</li>
+        </ul>
         <div ng-include="'app/account/login/login.html'"></div>
       </div>
     </div>
@@ -14,21 +18,30 @@
 <div class="container" ng-show="userIDKnown()">
     <div class="row">
       <div class="col-lg-4">
-        <h1>USER ID {{_id}}</h1>
       </div>
-      <div class="col-lg-8">
-        <h2>My Bookshelf</h2>
-        <form>
-          <input ng-model="newBook" type="text" placeholder="Title or ISBN">
-          <button class="btn btn-lg btn-primary" ng-click="addBook()">Add Book</button>
-        </form>
-        <ul class="books">
-          <li class="list-item" ng-repeat="book in myBooks">
-            <img ng-src="{{book.imageUrl}}"/>
-          </li>
-        </ul>
+      <div class="col-lg-7">
+        <h2 ng-click="page='myBooks'" ng-class="{active: page==='allBooks'}">My Bookshelf</h2>
+        <h2 ng-click="page='allBooks'" ng-class="{active: page==='myBooks'}">Outpost</h2>
+        <div ng-show="page==='myBooks'">
+            <form>
+              <input ng-model="newBook" type="text" placeholder="Title or ISBN">
+              <button class="btn btn-lg btn-primary" ng-click="addBook()">Add Book</button>
+            </form>
+            <ul class="books">
+              <li ng-repeat="book in myBooks">
+                <img ng-src="{{book.imageUrl}}"/>
+              </li>
+            </ul>
+        </div>
+        <div ng-show="page==='allBooks'">
+          <ul class="books">
+            <li ng-repeat="book in allBooks">
+              <img ng-src="{{book.imageUrl}}"/>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+
 </div>
 <footer class="footer">
   <div class="container">
