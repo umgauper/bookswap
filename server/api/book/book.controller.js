@@ -4,9 +4,16 @@ var _ = require('lodash');
 var Book = require('./book.model');
 
 // Get list of books
-exports.index = function(req, res) {
+exports.indexByOnwer = function(req, res) {
   var owner = req.params.owner;
   Book.find({owner: owner}, function (err, books) {
+    if(err) { return handleError(res, err); }
+    return res.json(200, books);
+  });
+};
+
+exports.index = function(req, res) {
+  Book.find(function (err, books) {
     if(err) { return handleError(res, err); }
     return res.json(200, books);
   });
