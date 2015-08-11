@@ -3,9 +3,11 @@
   <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
 </div>
 <div class="modal-body">
-  <p ng-if="modal.text" ng-bind="modal.text"></p>
-  <div ng-if="modal.html" ng-bind-html="modal.html"></div>
+    <input type="text" ng-model="firstName" placeholder="First Name">
+    <input type="text" ng-model="lastName" placeholder="Last Name">
+    <input type="text" ng-model="city" placeholder="City">
+    <input type="text" ng-model="state" placeholder="State">
+    <button class="btn btn-default" ng-click="updateUserInfo()" data-dismiss="modal">Save</button>
 </div>
 <div class="modal-footer">
-  <button ng-repeat="button in modal.buttons" ng-class="button.classes" ng-click="button.click($event)" ng-bind="button.text" class="btn"></button>
 </div>

@@ -21,6 +21,20 @@ exports.index = function(req, res) {
 };
 
 /**
+ * Update user info
+ */
+exports.update = function(req, res) {
+  var userID = req.params.id;
+  var update = {$set: {firstName: req.body.firstName, lastName: req.body.lastName, city: req.body.city, state: req.body.state}};
+  User.update(userID, update, function(err, numdocs, doc) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(200, doc);
+    }
+  });
+};
+/**
  * Creates a new user
  */
 exports.create = function (req, res, next) {
@@ -43,7 +57,7 @@ exports.show = function (req, res, next) {
   User.findById(userId, function (err, user) {
     if (err) return next(err);
     if (!user) return res.send(401);
-    res.json(user.profile);
+    res.json({firstName: user.firstName, lastName: user.lastName, city: user.city, state: user.state});
   });
 };
 

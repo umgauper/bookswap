@@ -18,10 +18,16 @@
 <div class="container" ng-show="userIDKnown()">
     <div class="row">
       <div class="col-lg-4">
+        <img src="../assets/images/200x200.png">
+        <h2>{{username}}</h2>
+        <a ng-click="openUserUpdate()" ng-hide="firstName">Add Your Name</a>
+        <h5>{{firstName}} {{lastName}}</h5>
+        <a ng-click="openUserUpdate()" ng-hide="city">Add Your Address</a>
+        <h5>{{city}}, {{state}}</h5>
       </div>
-      <div class="col-lg-7">
+      <div class="col-lg-7 shelf">
         <h2 ng-click="page='myBooks'" ng-class="{active: page==='allBooks'}">My Bookshelf</h2>
-        <h2 ng-click="page='allBooks'" ng-class="{active: page==='myBooks'}">Outpost</h2>
+        <h2 ng-click="page='allBooks'; getAllBooks()" ng-class="{active: page==='myBooks'}">Outpost</h2>
         <div ng-show="page==='myBooks'">
             <form>
               <input ng-model="newBook" type="text" placeholder="Title or ISBN">
@@ -41,7 +47,6 @@
           </ul>
         </div>
       </div>
-
 </div>
 <footer class="footer">
   <div class="container">

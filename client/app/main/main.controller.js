@@ -1,11 +1,27 @@
   'use strict';
 
   angular.module('bookswapApp')
-    .controller('MainCtrl', function ($scope, $http, Auth, User) {
-
+    .controller('MainCtrl', function ($scope, $http, Auth, User, $modal) {
 
     $scope.page = 'myBooks';
 
+    $scope.openUserUpdate = function() {
+      $scope.firstName = '';
+      $scope.lastName = '';
+      $scope.city = '';
+      $scope.state = '';
+
+      $scope.$modalInstance = $modal.open({
+        templateUrl: 'components/modal/modal.html',
+        controller: 'userUpdateCtrl',
+        scope: $scope
+      });
+    };
+
+    $scope.modal =  {
+      dismissable: true,
+      title: 'Settings'
+    };
 
     $scope.getAllBooks = function() {
       $http.get('api/books').success(function(data) {
@@ -20,8 +36,15 @@
         });
       };
 
-    $http.get('api/users/me').success(function(data) { //User.get() and Auth.getCurrentUser()._id were returning undefined, so I used a direct get request to user api instead
+//User.get() and Auth.getCurrentUser()._id were returning undefined, so I used a direct get request to user api instead
+    $http.get('api/users/me').success(function(data) {
+      console.log(data);
+      $scope.username = data.username;
       $scope.getMyBooks(data._id);
+      $scope.firstName = data.firstName;
+      $scope.lastName = data.lastName;
+      $scope.city = data.city;
+      $scope.state = data.state;
     });
 
 
