@@ -39,7 +39,7 @@
 //User.get() and Auth.getCurrentUser()._id were returning undefined, so I used a direct get request to user api instead
     $http.get('api/users/me').success(function(data) {
       console.log(data);
-      $scope.username = data.username;
+      $scope.name = data.name;
       $scope.getMyBooks(data._id);
       $scope.firstName = data.firstName;
       $scope.lastName = data.lastName;

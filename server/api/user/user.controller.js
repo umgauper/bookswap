@@ -24,14 +24,13 @@ exports.index = function(req, res) {
  * Update user info
  */
 exports.update = function(req, res) {
-  var userID = req.params.id;
+  var query = {_id: req.params.id};
   var update = {$set: {firstName: req.body.firstName, lastName: req.body.lastName, city: req.body.city, state: req.body.state}};
-  User.update(userID, update, function(err, numdocs, doc) {
+  User.update(query, update, function(err, doc) {
     if(err) {
       console.log(err);
-    } else {
-      res.send(200, doc);
     }
+    res.send(200);
   });
 };
 /**
