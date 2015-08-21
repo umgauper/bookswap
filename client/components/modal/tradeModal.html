@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <button type="button" ng-click="$dismiss()" class="close">&times;</button>
+  <h4>Propose Trade</h4>
+</div>
+<div class="modal-body">
+  <h3>Which book would you like to trade for <b>{{bookToTrade}}</b>?</h3>
+  <select>
+    <option ng-repeat="book in myBooks" value="{{book._id}}">{{book.name}}</option>
+  </select>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="submitTrade(bookID)">Submit</button>
+</div>

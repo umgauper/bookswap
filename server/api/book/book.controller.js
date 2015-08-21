@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Book = require('./book.model');
 
 // Get list of books
-exports.indexByOnwer = function(req, res) {
+exports.indexByOwner = function(req, res) {
   var owner = req.params.owner;
   Book.find({owner: owner}, function (err, books) {
     if(err) { return handleError(res, err); }
@@ -38,15 +38,15 @@ exports.create = function(req, res) {
 
 // Updates an existing book in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Book.findById(req.params.id, function (err, book) {
+  if(req.body._id) { delete req.body._id;}
+  var query = {_id: req.params.id};
+  var user = req.body.user;
+  var book = req.body.book;
+  var update = {$push: {"tradesProposed": {user: user, book: book}}};
+  Book.update(query, update, function (err, book) {
     if (err) { return handleError(res, err); }
     if(!book) { return res.send(404); }
-    var updated = _.merge(book, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, book);
-    });
+    return res.send(200);
   });
 };
 

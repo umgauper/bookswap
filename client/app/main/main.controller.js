@@ -1,7 +1,7 @@
   'use strict';
 
   angular.module('bookswapApp')
-    .controller('MainCtrl', function ($scope, $http, Auth, User, $modal) {
+    .controller('MainCtrl', function ($scope, $http, Auth, User, $modal, $window) {
 
     $scope.page = 'myBooks';
 
@@ -13,15 +13,21 @@
 
       $scope.$modalInstance = $modal.open({
         templateUrl: 'components/modal/modal.html',
-        controller: 'userUpdateCtrl',
-        scope: $scope
+        controller: 'MainCtrl'
       });
     };
 
-    $scope.modal =  {
-      dismissable: true,
-      title: 'Settings'
-    };
+   $scope.updateUserInfo = function() {
+        $http.put('api/users/' + Auth.getCurrentUser()._id, {
+          firstName: $scope.firstName,
+          lastName: $scope.lastName,
+          city: $scope.city,
+          state: $scope.state
+        }).success(function(data) {
+          console.log(data);
+          $window.location.reload();
+        })
+      };
 
     $scope.getAllBooks = function() {
       $http.get('api/books').success(function(data) {
@@ -38,8 +44,8 @@
 
 //User.get() and Auth.getCurrentUser()._id were returning undefined, so I used a direct get request to user api instead
     $http.get('api/users/me').success(function(data) {
-      console.log(data);
       $scope.name = data.name;
+      $scope._id = data._id;
       $scope.getMyBooks(data._id);
       $scope.firstName = data.firstName;
       $scope.lastName = data.lastName;
@@ -86,4 +92,28 @@
         });
       });
     };
+
+   $scope.openTradeModal = function(bookID, bookName) {
+     $scope.bookID = bookID;
+     $scope.bookToTrade = bookName; // name of book user clicked....pass via the propose trade, along w/book ID!
+     $scope.modal = {
+       dismissable: true,
+       title: 'Propose Trade'
+     };
+     $scope.$modalInstance = $modal.open({
+       templateUrl: 'components/modal/tradeModal.html',
+       controller: 'MainCtrl',
+       scope: $scope
+     });
+   };
+
+  $scope.submitTrade = function(bookID) {
+   // what needs to be done? add to Book Model tradesProposed: [{user: '', book: ''}] do $http.put thing-a-majig
+    $http.put('api/books/' + bookID, {user:'test', book: 'test book'}).success(function(){
+      //$modalInstance.dismiss('cancel');
+      //$window.location.reload(); //hmm...
+      //$scope.page = 'allBooks';
+    }); // push userID of user proposing trade, and book ID of book offered !!
+
+  }
   });

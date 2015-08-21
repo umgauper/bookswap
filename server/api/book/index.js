@@ -5,7 +5,7 @@ var controller = require('./book.controller');
 
 var router = express.Router();
 
-router.get('/:owner', controller.indexByOnwer);
+router.get('/:owner', controller.indexByOwner);
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);

@@ -1,0 +1,5 @@
+* Implement bonus user story: allow user to propose trade w/ other user
+// in outpost, hover over book...button that says propose trade (outpost shouldn't show user's own books!?)
+// then select from drop down, one of user's book title to propose trade,
+// makes post, then user who was proposed a trade sees a notification and an option to accept the trade
+// user who proposed trade sees status of trade proposal (boolean in book model...)

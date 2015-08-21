@@ -1,5 +1,5 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div class="container" ng-hide="isLoggedIn()">
+  <div class="container" ng-hide="isLoggedIn()">
     <div class="row">
       <div class="col-lg-8">
         <h1>'Allo, 'Allo!</h1>
@@ -36,13 +36,15 @@
             <ul class="books">
               <li ng-repeat="book in myBooks">
                 <img ng-src="{{book.imageUrl}}"/>
+                <p>{{book.tradesProposed}}</p>
               </li>
             </ul>
         </div>
         <div ng-show="page==='allBooks'">
+        <p> click a book to propose a trade.</p>
           <ul class="books">
             <li ng-repeat="book in allBooks">
-              <img ng-src="{{book.imageUrl}}"/>
+              <img ng-hide="book.owner === _id" ng-click="openTradeModal(book._id, book.name)" ng-src="{{book.imageUrl}}"/>
             </li>
           </ul>
         </div>

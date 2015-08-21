@@ -1,13 +1,13 @@
 <div class="modal-header">
-  <button ng-if="modal.dismissable" type="button" ng-click="$dismiss()" class="close">&times;</button>
-  <h4 ng-if="modal.title" ng-bind="modal.title" class="modal-title"></h4>
+  <button type="button" ng-click="$dismiss()" class="close">&times;</button>
+  <h4>User Information</h4>
 </div>
 <div class="modal-body">
     <input type="text" ng-model="firstName" placeholder="First Name">
     <input type="text" ng-model="lastName" placeholder="Last Name">
     <input type="text" ng-model="city" placeholder="City">
     <input type="text" ng-model="state" placeholder="State">
-    <button class="btn btn-default" ng-click="updateUserInfo()" data-dismiss="modal">Save</button>
 </div>
 <div class="modal-footer">
+  <button class="btn btn-primary" ng-click="updateUserInfo()">Save</button>
 </div>
