@@ -2,16 +2,20 @@
   <div class="container" ng-hide="isLoggedIn()">
     <div class="row">
       <div class="col-lg-8">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-        <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+        <h1>Book Outpost</h1>
+        <p>
+          It's easy! List books you'd like to swap with other club members.</br>
+          Once a book is requested, mail it to the club member.</br>
+          In return you may choose from hundreds of available books!</br>
+        </p>
       </div>
       <div class="col-lg-4" ng-controller="LoginCtrl">
-        <ul>
-          <li>Login</li>
-          <li>Register</li>
+        <ul class="nav nav-tabs">
+          <li ng-click="tab='login'" ng-class="{active: tab==='login'}" role="presentation">Login</li>
+          <li ng-click="tab='register'" ng-class="{active: tab==='register'}" role="presentation">Register</li>
         </ul>
-        <div ng-include="'app/account/login/login.html'"></div>
+        <div class="login-block" ng-show="tab==='login'" ng-include="'app/account/login/login.html'"></div>
+        <div class="login-block" ng-show="tab==='register'" ng-include="'app/account/signup/signup.html'"></div>
       </div>
     </div>
 </div>
@@ -26,8 +30,8 @@
         <h5>{{city}}, {{state}}</h5>
       </div>
       <div class="col-lg-7 shelf">
-        <h2 ng-click="page='myBooks'" ng-class="{active: page==='allBooks'}">My Bookshelf</h2>
-        <h2 ng-click="page='allBooks'; getAllBooks()" ng-class="{active: page==='myBooks'}">Outpost</h2>
+        <h2 ng-click="page='myBooks'" ng-class="{activePage: page==='allBooks'}">My Bookshelf</h2>
+        <h2 ng-click="page='allBooks'; getAllBooks()" ng-class="{activePage: page==='myBooks'}">Outpost</h2>
         <div ng-show="page==='myBooks'">
             <form>
               <input ng-model="newBook" type="text" placeholder="Title or ISBN">
@@ -36,7 +40,10 @@
             <ul class="books">
               <li ng-repeat="book in myBooks">
                 <img ng-src="{{book.imageUrl}}"/>
-                <p>{{book.tradesProposed}}</p>
+                <p ng-show="book.tradesProposed[0].book">Trade <i>{{book.name}}</i> for <i>{{book.tradesProposed[0].book}}</i>?
+                  <button ng-click="acceptTrade(book._id)" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></button>
+                </p>
+
               </li>
             </ul>
         </div>

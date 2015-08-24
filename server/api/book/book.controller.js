@@ -50,6 +50,18 @@ exports.update = function(req, res) {
   });
 };
 
+exports.acceptTrade = function(req, res) { //TODO: make TradeAccepted change to TRUE!!! ok? lol lol lol
+  var query = {_id: req.params.id};
+  var user = req.body.user;
+  var book = req.body.book;
+  var update = {$push: {"tradesProposed": {user: user, book: book}}};
+  Book.update(query, update, function (err, book) {
+    if (err) { return handleError(res, err); }
+    if(!book) { return res.send(404); }
+    return res.send(200);
+  });
+};
+
 // Deletes a book from the DB.
 exports.destroy = function(req, res) {
   Book.findById(req.params.id, function (err, book) {

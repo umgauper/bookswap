@@ -4,10 +4,11 @@
 </div>
 <div class="modal-body">
   <h3>Which book would you like to trade for <b>{{bookToTrade}}</b>?</h3>
-  <select>
-    <option ng-repeat="book in myBooks" value="{{book._id}}">{{book.name}}</option>
+  <select ng-model="data.selected">
+    <option ng-repeat="book in myBooks" value="{{book.name}}">{{book.name}}</option>
   </select>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="submitTrade(bookID)">Submit</button>
+  <button class="btn btn-primary" ng-click="submitTrade(bookID, data.selected)">Submit</button>
 </div>
+

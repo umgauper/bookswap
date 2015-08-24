@@ -52,11 +52,11 @@ body {
   border: 1px solid #7d4627;
 }
 
-.active {
+.activePage {
   color: #6495ed;
 }
 
-.active:hover {
+.activePage:hover {
   color: #5e7fd1;
 }
 
@@ -72,6 +72,27 @@ ul.books li {
   display: inline;
 }
 
+.nav-tabs li.active {
+  background-color: rgb(244, 244, 244);
+}
 
+.nav-tabs li {
+  background-color: rgb(200, 200, 200);
+  font-size: 20px;
+  padding: 10px;
+  border-width: 3px 3px 0 3px;
+  border-color: rgb(200, 200, 200);
+  border-style: solid;
+  border-radius: 10px 10px 0 0;
+  margin-right: 5px;
+}
 
+.login-block {
+  padding: 20px;
+  border: 2px solid lightgray;
+  background-color: rgb(244, 244, 244);
+}
 
+.login-block button {
+  margin-bottom: 10px;
+}
