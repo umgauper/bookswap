@@ -9,13 +9,14 @@
           In return you may choose from hundreds of available books!</br>
         </p>
       </div>
-      <div class="col-lg-4" ng-controller="LoginCtrl">
+      <div class="col-lg-4">
         <ul class="nav nav-tabs">
           <li ng-click="tab='login'" ng-class="{active: tab==='login'}" role="presentation">Login</li>
           <li ng-click="tab='register'" ng-class="{active: tab==='register'}" role="presentation">Register</li>
         </ul>
         <div class="login-block" ng-show="tab==='login'" ng-include="'app/account/login/login.html'"></div>
         <div class="login-block" ng-show="tab==='register'" ng-include="'app/account/signup/signup.html'"></div>
+        <!-- TODO: fix Register button!-->
       </div>
     </div>
 </div>
