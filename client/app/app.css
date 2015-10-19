@@ -48,8 +48,9 @@ body {
 }
 
 .shelf {
-  background-color: #EDD9C0;
-  border: 1px solid #7d4627;
+  background-color: #f5f5f5;
+  border: 1px solid transparent;
+  border-radius: 10px;
 }
 
 .activePage {
@@ -66,6 +67,10 @@ body {
 
 .shelf h2:nth-last-of-type(1) {
   float: right;
+}
+
+ul.books {
+  margin-top: 5%;
 }
 
 ul.books li {

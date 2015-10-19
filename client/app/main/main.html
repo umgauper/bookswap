@@ -4,8 +4,8 @@
       <div class="col-lg-8">
         <h1>Book Outpost</h1>
         <p>
-          It's easy! List books you'd like to swap with other club members.</br>
-          Once a book is requested, mail it to the club member.</br>
+          It's easy! List books you'd like to swap with other club members. </br>
+          Once a book is requested, mail it to the club member. </br>
           In return you may choose from hundreds of available books!</br>
         </p>
       </div>
@@ -49,7 +49,7 @@
             </ul>
         </div>
         <div ng-show="page==='allBooks'">
-        <p> click a book to propose a trade.</p>
+        <p> (click a book to propose a trade)</p>
           <ul class="books">
             <li ng-repeat="book in allBooks">
               <img ng-hide="book.owner === _id" ng-click="openTradeModal(book._id, book.name)" ng-src="{{book.imageUrl}}"/>
@@ -60,8 +60,8 @@
 </div>
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+      <p>Free Code Camp Basejump #4 |
+        <a href="https://twitter.com/umgauper">@umgauper</a> |
+         <a href="https://github.com/umgauper/bookswap">Issues</a></p>
   </div>
 </footer>
